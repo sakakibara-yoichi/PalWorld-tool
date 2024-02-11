@@ -1,13 +1,9 @@
-import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { PaldeckComponent } from './paldeck/paldeck.component';
-import { BreedingComponent } from './breeding/breeding.component';
-import { MapComponent } from './map/map.component';
+import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'paldeck', component: PaldeckComponent },
-  { path: 'breeding', component: BreedingComponent },
-  { path: 'map', component: MapComponent },
+  { path: '', loadComponent: () => import('./home/home.component').then(mod => mod.HomeComponent) },
+  { path: 'paldeck', loadComponent: () => import('./paldeck/paldeck.component').then(mod => mod.PaldeckComponent) },
+  { path: 'breeding', loadComponent: () => import('./breeding/breeding.component').then(mod => mod.BreedingComponent) },
+  { path: 'map', loadComponent: () => import('./map/map.component').then(mod => mod.MapComponent) },
   { path: '', redirectTo: '', pathMatch: 'full' },
 ];
